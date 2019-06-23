@@ -322,10 +322,10 @@
                     continue;
                 if (x == "..")
                 {
-                    if ((int)tmp.size())
+                    if ((int)tmp.size() > 1)
                         tmp.pop_back();
                     else
-                        return "ERR: INVALID PATH\n";
+                        return "ERR: ALREADY AT ROOT\n";
                 }
                 else
                     tmp.push_back(x);
