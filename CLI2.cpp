@@ -191,6 +191,7 @@
                 }
                 if (tmpp != "")
                     fullpath = tmpp;
+                // cout << "full " << fullpath << endl;
                 if (folders.find(fullpath) != folders.end())
                 {
                     if (fullpath[fullpath.length() - 1] != '/')
@@ -240,7 +241,7 @@
                     		if (match(fullpath, s) != -1)
                     			toerase.push_back(s);
                     	}
-                    	for (string s : folders)
+                    	for (string s : toerase)
                         	folders.erase(s);
                         // folders.erase(fullpath);
                         return "SUCC: DELETED\n";
@@ -284,10 +285,12 @@
                     {
                     	std::vector<string> toerase;
                     	for (string s : folders) {
-                    		if (match(fullpath, s) != -1)
+                    		if (match(fullpath, s) != -1) {
                     			toerase.push_back(s);
+                    			// cout << "s " << s << endl;
+                    		}
                     	}
-                    	for (string s : folders)
+                    	for (string s : toerase)
                         	folders.erase(s);
                         return "SUCC: DELETED\n";
                     }
@@ -347,12 +350,22 @@
             }
             return "ERR: INVALID PATH\n";
         }
+
+        
      
     public:
         playment()
         {
             folders.insert(root);
             path.push_back(root);
+        }
+
+
+        //
+        void listall() {
+        	cout << "----\n";
+        	for (string s : folders) cout << s << endl;
+        		cout << "---\n";
         }
      
         string exec(string command)
@@ -393,6 +406,7 @@
             if (s == "\n" || s.length() == 0)
                 continue;
             cout << p.exec(s) << endl;
+            // p.listall();
      
         }
      
